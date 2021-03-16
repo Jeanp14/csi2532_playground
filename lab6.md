@@ -26,8 +26,12 @@ WHERE year = 2000 OR artist_name = 'Picasso';
 
 4)
 ```sql
-
+SELECT name, birthplace
+FROM artists
+WHERE dateofbirth BETWEEN '1880-01-01' AND '1930-01-01';
 ```
+![image](https://user-images.githubusercontent.com/43187263/111242183-039bc300-85d5-11eb-9437-312a0a433cc0.png)
+
 
 5)
 ```sql
@@ -49,13 +53,28 @@ ORDER BY title;
 
 7)
 ```sql
-
+SELECT name, customer_id
+FROM customers
+INNER JOIN likeartists ON likeartists.customer_id = customers.id
+WHERE artist_name = 'Picasso';
 ```
+![image](https://user-images.githubusercontent.com/43187263/111241964-95ef9700-85d4-11eb-963c-b84d882c8724.png)
+
 
 8)
 ```sql
-
+SELECT name, customer_id
+FROM customers
+INNER JOIN likeartists ON likeartists.customer_id = customers.id
+WHERE artist_name IN (
+    SELECT artist_name 
+    FROM artists
+    INNER JOIN artworks ON artworks.artist_name = artists.name
+    WHERE style = 'Renaissance' AND price > '30000' 
+);
 ```
+![image](https://user-images.githubusercontent.com/43187263/111243275-2af38f80-85d7-11eb-9a38-ef0000188162.png)
+
 
 
 
