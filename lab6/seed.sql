@@ -101,11 +101,39 @@ FROM artworks; -- Smith will be gone!!!
 SELECT name, birthplace
 FROM artists;
 
+SELECT title, price
+FROM artworks
+WHERE year > 1600;
 
+SELECT title, type
+FROM artworks
+WHERE year = 2000 OR artist_name = 'Picasso';
 
+SELECT name, birthplace
+FROM artists
+WHERE dateofbirth BETWEEN '1880-01-01' AND '1930-01-01';
 
+SELECT name, country
+FROM artists
+WHERE style IN ('Modern', 'Baroque', 'Renaissance');
 
+SELECT *
+FROM artworks
+ORDER BY title;
 
+SELECT name, customer_id
+FROM customers
+INNER JOIN likeartists ON likeartists.customer_id = customers.id
+WHERE artist_name = 'Picasso';
 
-
+SELECT name, customer_id
+FROM customers
+INNER JOIN likeartists ON likeartists.customer_id = customers.id
+WHERE artist_name IN (
+    SELECT artist_name 
+    FROM artists
+    INNER JOIN artworks ON artworks.artist_name = artists.name
+    WHERE style = 'Renaissance' AND price > '30000' 
+);
+ 
 
