@@ -13,19 +13,9 @@ CREATE TABLE actions (
   data jsonb,
   inserted_at timestamp DEFAULT NOW(),
   updated_at timestamp DEFAULT NOW(),
-  created_by varchar(100),
   PRIMARY KEY (id)
 );
 
-CREATE TABLE schema_migrations (
-  migration varchar(255),
-  migrated_at timestamp DEFAULT NOW(),
-  PRIMARY KEY (migration)
-);
-
--- Ensure all migrations are added
-INSERT INTO schema_migrations
-  (migration)
-VALUES
-  ('20200202110100-create-migrations.sql'),
-  ('20200202110200-create-actions.sql');
+INSERT INTO schema_migrations (migration, migrated_at)
+VALUES ('20200202110200-create-actions.sql',
+        NOW()::timestamp);
